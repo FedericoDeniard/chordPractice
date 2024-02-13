@@ -53,6 +53,14 @@
     text-shadow: 2px 2px #395886;
 }
 
+.container .sequence {
+    background-color: #395886;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid #f0f3fa;
+    color: #f0f3fa;
+}
+
 .container button {
     padding: 8px;
     border-radius: 10px;

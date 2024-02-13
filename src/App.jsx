@@ -56,19 +56,19 @@ function App() {
         <div className="container">
           <h4>Two Five</h4>
           <p>II V I</p>
-          <p>{chord}</p>
+          <p className="sequence">{chord}</p>
           <button onClick={firstSequence}>Get Chords</button>
         </div>
         <div className="container">
           <h4>Circle of fifths</h4>
           <p> i iv VII III VI ii V i</p>
-          <p>{chord2}</p>
+          <p className="sequence">{chord2}</p>
           <button onClick={secondSequence}>Get Chords</button>
         </div>
         <div className="container">
           <h4>Chromatic sequence</h4>
           <p>I V7 Vdim IV iv I II7 V7 </p>
-          <p>{chord3}</p>
+          <p className="sequence">{chord3}</p>
           <button onClick={thirdSequence}>Get Chords</button>
         </div>
       </div>
