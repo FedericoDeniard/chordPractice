@@ -75,10 +75,12 @@ const getAccidentals = (firstNote) => {
     firstNote === 2 ||
     firstNote === 9 ||
     firstNote === 4 ||
-    firstNote === 11 ||
-    firstNote === 6
+    firstNote === 11
   ) {
     return 0;
+  } else if (firstNote === 6) {
+    let random = Math.floor(Math.random() * 2);
+    return random;
   } else {
     return 1;
   }
