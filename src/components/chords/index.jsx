@@ -1,28 +1,45 @@
 export const chords = {
-  0: "C",
-  1: "C#",
-  2: "D",
-  3: "D#",
-  4: "E",
-  5: "F",
-  6: "F#",
-  7: "G",
-  8: "G#",
-  9: "A",
-  10: "A#",
-  11: "B",
+  0: { 0: "C", 1: "C" },
+  1: { 0: "C#", 1: "Db" },
+  2: { 0: "D", 1: "D" },
+  3: { 0: "D#", 1: "Eb" },
+  4: { 0: "E", 1: "E" },
+  5: { 0: "F", 1: "F" },
+  6: { 0: "F#", 1: "Gb" },
+  7: { 0: "G", 1: "G" },
+  8: { 0: "G#", 1: "Ab" },
+  9: { 0: "A", 1: "A" },
+  10: { 0: "A#", 1: "Bb" },
+  11: { 0: "B", 1: "B" },
 };
 
-export const getRandomNumber = () => {
+export const getKey = () => {
   const randomNumber = Math.floor(Math.random() * 12);
   return randomNumber;
 };
 
+const getAccidentals = (firstNote) => {
+  if (
+    firstNote === 0 ||
+    firstNote === 7 ||
+    firstNote === 2 ||
+    firstNote === 9 ||
+    firstNote === 4 ||
+    firstNote === 11 ||
+    firstNote === 6
+  ) {
+    return 0;
+  } else {
+    return 1;
+  }
+};
+
 export const ii_v_i_sequence = () => {
-  let randomNumber = getRandomNumber();
-  let key = chords[randomNumber];
+  let firstNote = getKey();
+  let accidentals = getAccidentals(firstNote);
+  let key = chords[firstNote][accidentals];
   let ii = () => {
-    let chord = randomNumber + 2;
+    let chord = firstNote + 2;
     if (chord > 11) {
       return chord - 12;
     } else {
@@ -31,24 +48,25 @@ export const ii_v_i_sequence = () => {
   };
 
   let v = () => {
-    let chord = randomNumber + 7;
+    let chord = firstNote + 7;
     if (chord > 11) {
       return chord - 12;
     } else {
       return chord;
     }
   };
-  const iichord = `${chords[ii()]}m`;
-  const vchord = `${chords[v()]}7`;
+  const iichord = `${chords[ii()][accidentals]}m`;
+  const vchord = `${chords[v()][accidentals]}7`;
   const sequence = `${[iichord, vchord, key]}`;
   return sequence;
 };
 
 export const i_iv_vii_iii_vi_ii_v_i_sequence = () => {
-  let randomNumber = getRandomNumber();
-  let key = chords[randomNumber];
+  let firstNote = getKey();
+  let accidentals = getAccidentals(firstNote);
+  let key = chords[firstNote][accidentals];
   let iv = () => {
-    let chord = randomNumber + 5;
+    let chord = firstNote + 5;
     if (chord > 11) {
       return chord - 12;
     } else {
@@ -56,7 +74,7 @@ export const i_iv_vii_iii_vi_ii_v_i_sequence = () => {
     }
   };
   let vii = () => {
-    let chord = randomNumber + 10;
+    let chord = firstNote + 10;
     if (chord > 11) {
       return chord - 12;
     } else {
@@ -64,7 +82,7 @@ export const i_iv_vii_iii_vi_ii_v_i_sequence = () => {
     }
   };
   let iii = () => {
-    let chord = randomNumber + 3;
+    let chord = firstNote + 3;
     if (chord > 11) {
       return chord - 12;
     } else {
@@ -72,7 +90,7 @@ export const i_iv_vii_iii_vi_ii_v_i_sequence = () => {
     }
   };
   let vi = () => {
-    let chord = randomNumber + 8;
+    let chord = firstNote + 8;
     if (chord > 11) {
       return chord - 12;
     } else {
@@ -80,7 +98,7 @@ export const i_iv_vii_iii_vi_ii_v_i_sequence = () => {
     }
   };
   let ii = () => {
-    let chord = randomNumber + 2;
+    let chord = firstNote + 2;
     if (chord > 11) {
       return chord - 12;
     } else {
@@ -88,7 +106,7 @@ export const i_iv_vii_iii_vi_ii_v_i_sequence = () => {
     }
   };
   let v = () => {
-    let chord = randomNumber + 7;
+    let chord = firstNote + 7;
     if (chord > 11) {
       return chord - 12;
     } else {
@@ -96,12 +114,12 @@ export const i_iv_vii_iii_vi_ii_v_i_sequence = () => {
     }
   };
   const ichord = `${key}m`;
-  const ivchord = `${chords[iv()]}m7`;
-  const viichord = `${chords[vii()]}7`;
-  const iiichord = `${chords[iii()]}maj7`;
-  const vichord = `${chords[vi()]}maj7`;
-  const iichord = `${chords[ii()]}dim`;
-  const vchord = `${chords[v()]}7`;
+  const ivchord = `${chords[iv()][accidentals]}m7`;
+  const viichord = `${chords[vii()][accidentals]}7`;
+  const iiichord = `${chords[iii()][accidentals]}maj7`;
+  const vichord = `${chords[vi()][accidentals]}maj7`;
+  const iichord = `${chords[ii()][accidentals]}dim`;
+  const vchord = `${chords[v()][accidentals]}7`;
   const sequence = `${[
     ivchord,
     viichord,

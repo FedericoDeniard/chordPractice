@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./App.css";
-import { getRandomNumber } from "./components/chords";
 import { ii_v_i_sequence } from "./components/chords";
 import { i_iv_vii_iii_vi_ii_v_i_sequence } from "./components/chords";
 import { useEffect } from "react";
