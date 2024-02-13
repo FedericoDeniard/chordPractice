@@ -90,7 +90,7 @@ export const twoFiveSequence = () => {
   let key = chords[firstNote][accidentals];
   const iichord = `${chords[getII(firstNote)][accidentals]}m`;
   const vchord = `${chords[getV(firstNote)][accidentals]}7`;
-  const sequence = `${[iichord, vchord, key]}`;
+  const sequence = [iichord, vchord, key].join(" - ");
   return sequence;
 };
 
@@ -105,7 +105,7 @@ export const circleOfFifthsSequence = () => {
   const vichord = `${chords[getVI(firstNote)][accidentals]}maj7`;
   const iichord = `${chords[getII(firstNote)][accidentals]}dim`;
   const vchord = `${chords[getV(firstNote)][accidentals]}7`;
-  const sequence = `${[
+  const sequence = [
     ivchord,
     viichord,
     iiichord,
@@ -113,7 +113,7 @@ export const circleOfFifthsSequence = () => {
     iichord,
     vchord,
     ichord,
-  ]}`;
+  ].join(" - ");
   return sequence;
 };
 
@@ -127,7 +127,7 @@ export const chromaticSequence = () => {
   const ivchord = `${chords[getIV(firstNote)][accidentals]}m7`;
   const IVchord = `${chords[getIV(firstNote)][accidentals]}`;
   const iichord = `${chords[getII(firstNote)][accidentals]}7`;
-  const sequence = `${[
+  const sequence = [
     ichord,
     vchord,
     vdimchord,
@@ -137,6 +137,6 @@ export const chromaticSequence = () => {
     iichord,
     vchord,
     ichord,
-  ]}`;
+  ].join(" - ");
   return sequence;
 };
