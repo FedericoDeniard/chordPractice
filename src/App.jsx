@@ -61,7 +61,7 @@ function App() {
         </div>
         <div className="container">
           <h4>Circle of fifths</h4>
-          <p> i iv VII III VI ii V i</p>
+          <p>iv VII III VI ii V i</p>
           <p className="sequence">{chord2}</p>
           <button onClick={secondSequence}>Get Chords</button>
         </div>
