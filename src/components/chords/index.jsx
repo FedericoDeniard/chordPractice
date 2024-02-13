@@ -18,6 +18,56 @@ export const getKey = () => {
   return randomNumber;
 };
 
+const getII = (firstNote) => {
+  let chord = firstNote + 2;
+  if (chord > 11) {
+    return chord - 12;
+  } else {
+    return chord;
+  }
+};
+const getIII = (firstNote) => {
+  let chord = firstNote + 4;
+  if (chord > 11) {
+    return chord - 12;
+  } else {
+    return chord;
+  }
+};
+const getIV = (firstNote) => {
+  let chord = firstNote + 5;
+  if (chord > 11) {
+    return chord - 12;
+  } else {
+    return chord;
+  }
+};
+const getV = (firstNote) => {
+  let chord = firstNote + 7;
+  if (chord > 11) {
+    return chord - 12;
+  } else {
+    return chord;
+  }
+};
+const getVI = (firstNote) => {
+  let chord = firstNote + 8;
+  if (chord > 11) {
+    return chord - 12;
+  } else {
+    return chord;
+  }
+};
+
+const getVII = (firstNote) => {
+  let chord = firstNote + 10;
+  if (chord > 11) {
+    return chord - 12;
+  } else {
+    return chord;
+  }
+};
+
 const getAccidentals = (firstNote) => {
   if (
     firstNote === 0 ||
@@ -34,97 +84,56 @@ const getAccidentals = (firstNote) => {
   }
 };
 
-export const ii_v_i_sequence = () => {
+export const twoFiveSequence = () => {
   let firstNote = getKey();
   let accidentals = getAccidentals(firstNote);
   let key = chords[firstNote][accidentals];
-  let ii = () => {
-    let chord = firstNote + 2;
-    if (chord > 11) {
-      return chord - 12;
-    } else {
-      return chord;
-    }
-  };
-
-  let v = () => {
-    let chord = firstNote + 7;
-    if (chord > 11) {
-      return chord - 12;
-    } else {
-      return chord;
-    }
-  };
-  const iichord = `${chords[ii()][accidentals]}m`;
-  const vchord = `${chords[v()][accidentals]}7`;
+  const iichord = `${chords[getII(firstNote)][accidentals]}m`;
+  const vchord = `${chords[getV(firstNote)][accidentals]}7`;
   const sequence = `${[iichord, vchord, key]}`;
   return sequence;
 };
 
-export const i_iv_vii_iii_vi_ii_v_i_sequence = () => {
+export const circleOfFifthsSequence = () => {
   let firstNote = getKey();
   let accidentals = getAccidentals(firstNote);
   let key = chords[firstNote][accidentals];
-  let iv = () => {
-    let chord = firstNote + 5;
-    if (chord > 11) {
-      return chord - 12;
-    } else {
-      return chord;
-    }
-  };
-  let vii = () => {
-    let chord = firstNote + 10;
-    if (chord > 11) {
-      return chord - 12;
-    } else {
-      return chord;
-    }
-  };
-  let iii = () => {
-    let chord = firstNote + 3;
-    if (chord > 11) {
-      return chord - 12;
-    } else {
-      return chord;
-    }
-  };
-  let vi = () => {
-    let chord = firstNote + 8;
-    if (chord > 11) {
-      return chord - 12;
-    } else {
-      return chord;
-    }
-  };
-  let ii = () => {
-    let chord = firstNote + 2;
-    if (chord > 11) {
-      return chord - 12;
-    } else {
-      return chord;
-    }
-  };
-  let v = () => {
-    let chord = firstNote + 7;
-    if (chord > 11) {
-      return chord - 12;
-    } else {
-      return chord;
-    }
-  };
   const ichord = `${key}m`;
-  const ivchord = `${chords[iv()][accidentals]}m7`;
-  const viichord = `${chords[vii()][accidentals]}7`;
-  const iiichord = `${chords[iii()][accidentals]}maj7`;
-  const vichord = `${chords[vi()][accidentals]}maj7`;
-  const iichord = `${chords[ii()][accidentals]}dim`;
-  const vchord = `${chords[v()][accidentals]}7`;
+  const ivchord = `${chords[getIV(firstNote)][accidentals]}m7`;
+  const viichord = `${chords[getVII(firstNote)][accidentals]}7`;
+  const iiichord = `${chords[getIII(firstNote)][accidentals]}maj7`;
+  const vichord = `${chords[getVI(firstNote)][accidentals]}maj7`;
+  const iichord = `${chords[getII(firstNote)][accidentals]}dim`;
+  const vchord = `${chords[getV(firstNote)][accidentals]}7`;
   const sequence = `${[
     ivchord,
     viichord,
     iiichord,
     vichord,
+    iichord,
+    vchord,
+    ichord,
+  ]}`;
+  return sequence;
+};
+
+export const chromaticSequence = () => {
+  let firstNote = getKey();
+  let accidentals = getAccidentals(firstNote);
+  let key = chords[firstNote][accidentals];
+  const ichord = `${key}m`;
+  const vchord = `${chords[getV(firstNote)][accidentals]}7`;
+  const vdimchord = `${chords[getV(firstNote)][accidentals]}dim`;
+  const ivchord = `${chords[getIV(firstNote)][accidentals]}m7`;
+  const IVchord = `${chords[getIV(firstNote)][accidentals]}`;
+  const iichord = `${chords[getII(firstNote)][accidentals]}7`;
+  const sequence = `${[
+    ichord,
+    vchord,
+    vdimchord,
+    IVchord,
+    ivchord,
+    ichord,
     iichord,
     vchord,
     ichord,

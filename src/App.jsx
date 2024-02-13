@@ -1,7 +1,11 @@
 import { useState } from "react";
 import "./App.css";
-import { ii_v_i_sequence } from "./components/chords";
-import { i_iv_vii_iii_vi_ii_v_i_sequence } from "./components/chords";
+import {
+  twoFiveSequence,
+  circleOfFifthsSequence,
+  chromaticSequence,
+} from "./components/chords";
+
 import { useEffect } from "react";
 
 function App() {
@@ -9,7 +13,7 @@ function App() {
   const [chord, setChord] = useState("");
 
   const firstSequence = () => {
-    const getChord = ii_v_i_sequence("");
+    const getChord = twoFiveSequence("");
     setChord(getChord);
   };
 
@@ -17,8 +21,16 @@ function App() {
   const [chord2, setChord2] = useState("");
 
   const secondSequence = () => {
-    const getChord2 = i_iv_vii_iii_vi_ii_v_i_sequence();
+    const getChord2 = circleOfFifthsSequence();
     setChord2(getChord2);
+  };
+
+  // Third Sequence
+  const [chord3, setChord3] = useState("");
+
+  const thirdSequence = () => {
+    const getChord3 = chromaticSequence();
+    setChord3(getChord3);
   };
 
   // Preload chords
@@ -30,6 +42,9 @@ function App() {
     if (chord2 === "") {
       secondSequence();
     }
+    if (chord3 === "") {
+      thirdSequence();
+    }
   });
 
   //
@@ -39,16 +54,22 @@ function App() {
       <div className="app">
         <h1 className="chordmaster">ChordMaster</h1>
         <div className="container">
-          {" "}
+          <h4>Two Five</h4>
           <p>II V I</p>
           <p>{chord}</p>
-          <button onClick={firstSequence}>Get Chord</button>
+          <button onClick={firstSequence}>Get Chords</button>
         </div>
         <div className="container">
           <h4>Circle of fifths</h4>
           <p> i iv VII III VI ii V i</p>
           <p>{chord2}</p>
-          <button onClick={secondSequence}>Get Chord</button>
+          <button onClick={secondSequence}>Get Chords</button>
+        </div>
+        <div className="container">
+          <h4>Chromatic sequence</h4>
+          <p>I V7 Vdim IV iv I II7 V7 </p>
+          <p>{chord3}</p>
+          <button onClick={thirdSequence}>Get Chords</button>
         </div>
       </div>
     </>
