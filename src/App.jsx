@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import { getRandomNumber } from "./components/chords";
+import { ii_v_i_sequence } from "./components/chords";
+import { i_iv_vii_iii_vi_ii_v_i_sequence } from "./components/chords";
+import { useEffect } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  ii_v_i_sequence();
+
+  const [chord, setChord] = useState("");
+
+  const firstSequence = () => {
+    const getChord = ii_v_i_sequence();
+    setChord(getChord);
+  };
+
+  const [chord2, setChord2] = useState();
+
+  const secondSequence = () => {
+    const getChord2 = i_iv_vii_iii_vi_ii_v_i_sequence();
+    setChord2(getChord2);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>ChordMaster</h1>
+      <p>II V I</p>
+      <p>{chord}</p>
+      <button onClick={firstSequence}>Get Chord</button>
+      <p> I IV VII III VI II V I</p>
+      <p>{chord2}</p>
+      <button onClick={secondSequence}>Get Secondary Chord</button>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
