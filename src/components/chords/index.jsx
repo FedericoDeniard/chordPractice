@@ -1,4 +1,4 @@
-export const chords = {
+const chords = {
   0: { 0: "C", 1: "C" },
   1: { 0: "C#", 1: "Db" },
   2: { 0: "D", 1: "D" },
@@ -13,7 +13,7 @@ export const chords = {
   11: { 0: "B", 1: "B" },
 };
 
-export const getKey = () => {
+const getKey = () => {
   const randomNumber = Math.floor(Math.random() * 12);
   return randomNumber;
 };
@@ -86,9 +86,19 @@ const getAccidentals = (firstNote) => {
   }
 };
 
-export const twoFiveSequence = () => {
-  let firstNote = getKey();
-  let accidentals = getAccidentals(firstNote);
+export const twoFiveSequence = (initialNote, accidental) => {
+  let firstNote = "";
+  if (initialNote) {
+    firstNote = initialNote;
+  } else {
+    firstNote = getKey();
+  }
+  let accidentals = accidental;
+  if (accidental) {
+    accidentals = accidental;
+  } else {
+    accidentals = getAccidentals(firstNote);
+  }
   let key = chords[firstNote][accidentals];
   const iichord = `${chords[getII(firstNote)][accidentals]}m`;
   const vchord = `${chords[getV(firstNote)][accidentals]}7`;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
 import {
   twoFiveSequence,
@@ -9,11 +9,26 @@ import {
 import { useEffect } from "react";
 
 function App() {
+  const [initialNote, setInitialNote] = useState();
+  const [accidental, setAccidental] = useState();
+
+  let noteSelect = useRef();
+  let accidentalSelect = useRef();
+
+  const chooseKey = () => {
+    let selectedNote = noteSelect.current.value;
+    setInitialNote(selectedNote);
+    console.log(initialNote);
+    let accidentalSelected = accidentalSelect.current.value;
+    setAccidental(accidentalSelected);
+    console.log(accidental);
+  };
+
   // First Sequence
   const [chord, setChord] = useState("");
 
   const firstSequence = () => {
-    const getChord = twoFiveSequence("");
+    const getChord = twoFiveSequence(initialNote, accidental);
     setChord(getChord);
   };
 
@@ -53,6 +68,22 @@ function App() {
     <>
       <div className="app">
         <h1 className="chordmaster">ChordMaster</h1>
+        <div className="container">
+          <select ref={noteSelect}>
+            <option value={0}>C</option>
+            <option value={2}>D</option>
+            <option value={4}>E</option>
+            <option value={5}>F</option>
+            <option value={7}>G</option>
+            <option value={9}>A</option>
+            <option value={11}>B</option>
+          </select>
+          <select ref={accidentalSelect}>
+            <option value={0}>#</option>
+            <option value={1}>b</option>
+          </select>
+          <button onClick={chooseKey}>Choose key</button>
+        </div>
         <div className="container">
           <h4>Two Five</h4>
           <p>II V I</p>
